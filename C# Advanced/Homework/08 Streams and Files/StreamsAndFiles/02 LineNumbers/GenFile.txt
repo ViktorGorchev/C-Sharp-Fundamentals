@@ -1,0 +1,28 @@
+  1. namespace _02_LineNumbers
+  2. {
+  3.     using System;
+  4.     using System.IO;
+  5. 
+  6.     public class LineNumbers
+  7.     {
+  8.         private static void Main()
+  9.         {
+ 10.             using (var reader = new StreamReader("../../LineNumbers.cs"))
+ 11.             {
+ 12.                 using (var writer = new StreamWriter("../../GenFile.txt"))
+ 13.                 {
+ 14.                     int rowCounter = 1;
+ 15.                     var line = reader.ReadLine();
+ 16.                     while (line != null)
+ 17.                     {
+ 18.                         writer.WriteLine("{0,3}. {1}", rowCounter, line);
+ 19.                         rowCounter++;
+ 20.                         line = reader.ReadLine();
+ 21.                     }
+ 22.                 }
+ 23.             }
+ 24. 
+ 25.             Console.WriteLine("File done");
+ 26.         }
+ 27.     }
+ 28. }

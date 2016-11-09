@@ -1,0 +1,44 @@
+using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication46
+{
+    class Program
+    {
+        static void Main()
+        {
+            double pages = double.Parse(Console.ReadLine());
+            double camping = double.Parse(Console.ReadLine());
+            double reades = double.Parse(Console.ReadLine());
+
+            double daysForReadingInM = 30 - camping;
+
+            double pagesPerM = daysForReadingInM * reades;
+
+            double neededMForReading = pages / pagesPerM; 
+
+            double neededYears = neededMForReading / 12;
+
+            double neededMonths = neededMForReading % 12;
+
+            neededYears = Math.Floor(neededYears);
+
+            neededMonths = Math.Ceiling(neededMonths);
+
+            if (daysForReadingInM == 0)
+            {
+                System.Console.WriteLine("never");
+            }
+            else
+            {
+                Console.WriteLine("{0} years {1} months", neededYears, neededMonths);
+
+            }
+
+        }
+    }
+}

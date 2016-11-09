@@ -1,0 +1,144 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication46
+{
+    class Program
+    {
+        static void Main()
+        {
+            int n = int.Parse(Console.ReadLine());
+            string input = Console.ReadLine();
+
+            int counter = 0;
+            int counterTwo = 0;
+
+            string[] a = input.Select(c => c.ToString()).ToArray(); // string to char array
+            
+            int[] b = new int[input.Length]; //converting char to int
+            for (int i = 0; i < input.Length; i++)
+            {
+                int x = (int)Convert.ToChar(a[i]);
+                b[i] = x;                    
+
+            }
+
+            int[,] board = new int[n, n];    //Board
+
+            for (int row = 0; row < n; row++)
+            {
+                for (int col = 0; col < n; col++)
+                {
+                    if (counter < b.Length && counter <= (n * n) - 1)
+                    {
+                         board[row, col] = b[counter];
+                    }
+                    else if (counter > (n * n) - 1)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        board[row, col] = 0;
+                    }
+                    
+                   
+                    counter++;
+                   
+                   
+                }
+            }
+
+
+
+            for (int row = 0; row < n; row++) //Board bez zlishnite simvoli = 0
+            {
+                for (int col = 0; col < n; col++)
+                {
+                    if (board[row, col] >= 48 && board[row, col] <= 57)
+                    {
+                        goto Outer;
+                    }
+                    else if (board[row, col] >= 65 && board[row, col] <= 90)
+                    {
+                        goto Outer;
+                    }
+                    else if (board[row, col] >= 97 && board[row,col] <= 122)
+                    {
+                        goto Outer;
+                    }
+                    else
+	                {
+                        board[row, col] = 0;
+	                }
+
+                Outer:
+                    continue; 
+                }
+            }
+
+            int withe = 0;
+            int black = 0;
+
+            for (int row = 0; row < n; row++)
+            {
+                for (int col = 0; col < n; col++)
+                {
+                    if (row % 2 != 0 && col % 2 != 0)  //black
+                    {
+                        if (board[row, col] >= 65 && board[row, col] <= 90)
+                        {
+                            withe += board[row, col];
+                        }
+                        else
+                        {
+                            black += board[row, col];
+                        }
+                        
+                    }
+                    else if (row % 2 == 0 && col % 2 == 0)
+                    {
+                        if (board[row, col] >= 65 && board[row, col] <= 90)
+                        {
+                            withe += board[row, col];
+                        }
+                        else
+                        {
+                            black += board[row, col];
+                        }
+                    }
+                    else                                //wite
+                    {
+                        if (board[row, col] >= 65 && board[row, col] <= 90)
+                        {
+                            black += board[row, col];
+                        }
+                        else
+                        {
+                            withe += board[row, col];
+                        }
+                    }                   
+
+                }
+            }
+
+            if (black > withe)  // result
+            {
+                Console.WriteLine("The winner is: black team");
+                Console.WriteLine(black - withe);
+            }
+            else if (withe > black)
+            {
+                Console.WriteLine("The winner is: white team");
+                Console.WriteLine(withe - black);
+            }
+            else if (black == withe)
+            {
+                Console.WriteLine("Equal result: {0}", black);
+            }
+        }
+    }
+}

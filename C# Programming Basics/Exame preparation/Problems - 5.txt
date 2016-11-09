@@ -1,0 +1,235 @@
+//Console.WriteLine(Convert.ToString((long)inputBits, 2).PadLeft(64,'0'));
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//Problem 5 – Bit Flipper
+//We are given a bit sequence in the form of 64-bit integer. 
+//We pass through the bits from left to right and we flip all sequences of 3 equal bits (111 --> 000, 000 -->  111). 
+namespace ConsoleApplication45
+{
+    class Program
+    {
+        static void Main()
+        {
+
+            ulong n = ulong.Parse(Console.ReadLine());
+            int endBit = 62;
+            while (endBit > 0)
+            {
+                endBit--;
+                ulong last3Bits = (n >> endBit) & 7;
+                if (last3Bits == 0 || last3Bits == 7)
+                {
+                    n = n ^ ((ulong)7 << endBit);
+                    endBit -= 2;
+                }
+            }
+
+            Console.WriteLine(n);
+
+
+        }
+    }
+}
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//Problem 5 – Bit Shooter 
+namespace ConsoleApplication45
+{
+    class Program
+    {
+        static void Main()
+        {
+            ulong n = ulong.Parse(Console.ReadLine());
+           
+            for (int i = 0; i < 3; i++)
+            {
+                string shot = Console.ReadLine();
+                string[] shotNums = shot.Split(' ');
+                int center = int.Parse(shotNums[0]);
+                int size = int.Parse(shotNums[1]);
+                int start = center - (size / 2);
+                int end = center + (size / 2);
+                if (start < 0)
+                {
+                    start = 0;
+                }
+                else if (end > 63)
+                {
+                    end = 63;
+                }
+                for (int k = start; k <= end; k++)
+                {
+                    ulong mask = ~((ulong)1 << k);
+                    n = n & mask;
+                }
+            }
+
+            ulong firstPart = 0;
+            ulong secondPart = 0;
+            for (int i = 0; i < 64; i++)
+            {
+                ulong nRight = n >> i;
+                ulong bit = nRight & (ulong)1;
+
+                if (i < 32 && bit == 1)
+                {
+                    firstPart++;
+                }
+                else if (i > 31 && bit == 1)
+                {
+                    secondPart++;
+                }
+            }
+             Console.WriteLine("left: {0}", secondPart);
+             Console.WriteLine("right: {0}", firstPart);
+            
+        }
+    }
+}
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+//Problem 5 – Bit Sifting
+namespace ConsoleApplication45
+{
+    class Program
+    {
+        static void Main()
+        {
+            ulong num = ulong.Parse(Console.ReadLine());
+            int n = int.Parse(Console.ReadLine());
+            int result = 0;
+            //Console.WriteLine(Convert.ToString((long)num, 2).PadLeft(64, '0'));
+            
+            for (int i = 0; i < n; i++)
+            {
+                ulong seve = ulong.Parse(Console.ReadLine());
+                //Console.WriteLine(Convert.ToString((long)seve, 2).PadLeft(64, '0'));
+                
+                for (int k = 0; k < 64; k++)
+                {
+                    
+                    ulong RigtP = seve >> k;
+                    ulong bitSeve = RigtP & 1;
+
+                    if (bitSeve == 1)
+                    {
+                        ulong mask = ~((ulong)1 << k);
+                        num = num & mask;
+                    }
+                }
+
+                //Console.WriteLine(Convert.ToString((long)num, 2).PadLeft(64,'0'));
+            } 
+                               
+
+            for (int i = 0; i < 64; i++)
+            {
+                ulong nRigtP = num >> i;
+                ulong bit = nRigtP & 1;
+
+                if (bit == 1)
+                {
+                    result++;
+                }
+            }
+            
+            Console.WriteLine(result);
+        }
+    }
+}
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+//Problem 5 – Bit Lock
+namespace ConsoleApplication45
+{
+    class Program
+    {
+        static void Main()
+        {
+            string[] input = Console.ReadLine().Split();
+            int[] lockRows = Array.ConvertAll(input, int.Parse);
+
+            string command = Console.ReadLine();
+
+            while (command != "end")
+            {
+                string[] orders = command.Split();
+
+                if (orders[0] == "check")
+                {
+                    int col = int.Parse(orders[1]);
+                    int count = 0;
+
+                    foreach (var row in lockRows)
+                    {
+                        count += (row >> col) & 1;
+                    }
+
+                    Console.WriteLine(count);
+                }
+                else
+                {
+                    int row = int.Parse(orders[0]);
+                    string direction = orders[1];
+                    int rotations = int.Parse(orders[2]) % 12;
+
+                    if (direction == "left")
+                    {
+                        for (int i = 0; i < rotations; i++)
+                        {
+                            int leftmostBit = (lockRows[row] >> 11) & 1;
+                            lockRows[row] &= ~(1 << 11);
+                            lockRows[row] <<= 1;
+                            lockRows[row] |= leftmostBit;
+                        }
+                    }
+                    else if (direction == "right")
+                    {
+                        for (int i = 0; i < rotations; i++)
+                        {
+                            int rightmostBit = lockRows[row] & 1;
+                            lockRows[row] >>= 1;
+                            lockRows[row] |= rightmostBit << 11;
+                        }
+                    }
+
+                }
+
+                command = Console.ReadLine();
+            }
+
+            foreach (var row in lockRows)
+            {
+                Console.Write(row + " ");
+            }
+        }
+    }
+}

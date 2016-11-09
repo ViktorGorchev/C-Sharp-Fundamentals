@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InheritanceAndAbstraction", "InheritanceAndAbstraction\InheritanceAndAbstraction.csproj", "{ECFF10A7-687D-4453-87F0-29858D8BFBB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Working with Abstraction", "Working with Abstraction\Working with Abstraction.csproj", "{4294D0C8-D570-44A6-9D80-A495C6E6FCF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECFF10A7-687D-4453-87F0-29858D8BFBB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFF10A7-687D-4453-87F0-29858D8BFBB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFF10A7-687D-4453-87F0-29858D8BFBB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFF10A7-687D-4453-87F0-29858D8BFBB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4294D0C8-D570-44A6-9D80-A495C6E6FCF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4294D0C8-D570-44A6-9D80-A495C6E6FCF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4294D0C8-D570-44A6-9D80-A495C6E6FCF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4294D0C8-D570-44A6-9D80-A495C6E6FCF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

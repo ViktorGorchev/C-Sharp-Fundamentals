@@ -1,0 +1,2 @@
+<a href="http://softuni.bg" class="new"></a>
+END

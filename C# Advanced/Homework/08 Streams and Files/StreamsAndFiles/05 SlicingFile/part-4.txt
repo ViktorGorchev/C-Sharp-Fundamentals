@@ -1,0 +1,23 @@
+ (true)
+                    {
+                        int readBytes = source.Read(buffer, 0, buffer.Length);
+                        if (readBytes == 0)
+                        {
+                            break;
+                        }
+
+                        for (int j = 0; j < readBytes; j++)
+                        {
+                            allData.Add(buffer[j]);
+                        }
+                    }
+                }
+            }
+
+            using (var copy = new FileStream(destinationDirectory, FileMode.Create))
+            {
+                copy.Write(allData.ToArray(), 0, allData.Count);
+            }
+        }
+    }
+}

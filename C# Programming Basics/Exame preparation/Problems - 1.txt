@@ -1,0 +1,217 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//Inside the Building
+//In Absurdistan the buildings look like the figure on the right. They consist of 6 blocks of size h * h. 
+//Their bottom-left corner is located at the coordinates (0, 0). See the figure (for h = 2) to get a better idea.
+//Write a program that enters a size h and 5 points {x1, y1}, {x2, y2}, {x3, y3}, {x4, y4}, and {x5, y5} and prints 
+//for each of the points whether it is inside or outside of the building. Points at the building's 
+//border, like {0, 0}, are considered inside.
+namespace ConsoleApplication43
+{
+    class Program
+    {
+        static void Main()
+        {
+            int h = int.Parse(Console.ReadLine());
+            string[] output = new string[5];
+            for (int i = 0; i < 5; i++)
+            {
+                int x = int.Parse(Console.ReadLine());
+                int y = int.Parse(Console.ReadLine());
+
+                if (((x < 0 || x > (h * 3)) || (y < 0 || y > h)) && ((x < h || x > (h * 2)) || (y > (4 * h) || y < 0))) 
+                {
+                    output[i] = "outside";
+                }
+                else
+                {
+                    output[i] = "inside";
+                }
+            }
+            foreach (var item in output)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//Problem 1 – Fruit Market
+namespace ConsoleApplication43
+{
+    class Program
+    {
+        static void Main()
+        {
+            string day = Console.ReadLine();
+            double a = double.Parse(Console.ReadLine());
+            string productA = Console.ReadLine();
+            double b = double.Parse(Console.ReadLine());
+            string productB = Console.ReadLine();
+            double c = double.Parse(Console.ReadLine());
+            string productC = Console.ReadLine();
+
+            Dictionary<string, double> products = new Dictionary<string, double>();
+            products["banana"] = 1.80;
+            products["cucumber"] = 2.75;
+            products["tomato"] = 3.20;
+            products["orange"] = 1.60;
+            products["apple"] = 0.86;
+
+            switch (day)
+            {
+                case "Friday":
+                    products["banana"] = 1.62;
+                    products["cucumber"] = 2.475;
+                    products["tomato"] = 2.88;
+                    products["orange"] = 1.44;
+                    products["apple"] = 0.774;
+                    break;
+                case "Sunday":
+                    products["banana"] = 1.71;
+                    products["cucumber"] = 2.6125;
+                    products["tomato"] = 3.04;
+                    products["orange"] = 1.52;
+                    products["apple"] = 0.817;
+                    break;
+                case "Tuesday":
+                    products["banana"] = 1.44;
+                    products["orange"] = 1.28;
+                    products["apple"] = 0.688;
+                    break;
+                case "Wednesday":
+                    products["cucumber"] = 2.475;
+                    products["tomato"] = 2.88;
+                    break;
+                case "Thursday":
+                    products["banana"] = 1.26;
+                    break;
+                
+                default:
+                    break;
+            }
+            double result = products[productA] * a + products[productB] * b + products[productC] * c;
+            Console.WriteLine("{0:0.00}", result);
+        }
+    }
+}
+
+
+
+using System;
+//Problem 1 – Exam Schedule
+class ExamSchedule
+{
+    static void Main()
+    {
+        int startHour = int.Parse(Console.ReadLine());
+        int startMinutes = int.Parse(Console.ReadLine());
+        string partOfDay = Console.ReadLine();
+        int durationHours = int.Parse(Console.ReadLine());
+        int durationMinutes = int.Parse(Console.ReadLine());
+
+        if (partOfDay == "PM")
+		{
+			startHour += 12;
+
+			if (startHour == 24)
+			{
+				startHour = 0;
+			}
+		}
+			
+        DateTime startTime = new DateTime(2014, 04, 09, startHour, startMinutes, 0);
+        DateTime endTime = startTime.AddHours(durationHours).AddMinutes(durationMinutes);
+        Console.WriteLine("{0:hh:mm:tt}", endTime);
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//Problem 1 – Triangle
+namespace ConsoleApplication43
+{
+    class Program
+    {
+        static void Main()
+        {
+            double xA = double.Parse(Console.ReadLine());
+            double yA = double.Parse(Console.ReadLine());
+            double xB = double.Parse(Console.ReadLine());
+            double yB = double.Parse(Console.ReadLine());
+            double xC = double.Parse(Console.ReadLine());
+            double yC = double.Parse(Console.ReadLine());
+
+            double a = Math.Sqrt(Math.Pow((xB - xA), 2) + Math.Pow((yB - yA), 2));
+            double b = Math.Sqrt(Math.Pow((xC - xB), 2) + Math.Pow((yC - yB), 2));
+            double c = Math.Sqrt(Math.Pow((xA - xC), 2) + Math.Pow((yA - yC), 2));
+
+            if (a + b > c && b + c > a && a + c > b)
+            {
+                Console.WriteLine("Yes");
+                double p = (a + b + c) / 2;
+                double area = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+                Console.WriteLine("{0:0.00}", area);
+            }
+            else
+            {
+                Console.WriteLine("No");
+                Console.WriteLine("{0:0.00}", a);
+            }
+        }
+    }
+}
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//Problem 1 – Cinema
+namespace ConsoleApplication43
+{
+    class Program
+    {
+        static void Main()
+        {
+            string type = Console.ReadLine();
+            double row = double.Parse(Console.ReadLine());
+            double col = double.Parse(Console.ReadLine());
+            double income = 0;
+
+            switch (type)
+            {
+                case "Premiere": income = (row * col) * 12.00;
+                    break;
+                case "Normal": income = (row * col) * 7.50;
+                    break;
+                case "Discount": income = (row * col) * 5.00;
+                    break;
+                
+                default:
+                    break;
+            }
+            
+            Console.WriteLine("{0:0.00} leva", income);
+            
+        }
+    }
+}

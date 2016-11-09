@@ -1,0 +1,325 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//Problem 3 – Wine Glass
+namespace ConsoleApplication43
+{
+    class Program
+    {
+        static void Main()
+        {
+           int n = int.Parse(Console.ReadLine());
+           List<string> stars = new List<string>();
+                     
+           for (int i = 0; i < n; i++)
+           {
+               stars.Add("*");
+           }
+            stars[0] = "\\";
+            stars[n - 1] = "/";
+            foreach (var star in stars)
+            {
+                Console.Write(star);
+            }
+            Console.WriteLine();
+           
+            for (int i = 0; i < (n/2) - 1; i++)
+            {
+                stars[0 + i] = ".";
+                stars[1 + i] = "\\";
+                
+                stars[(n - 1) - i] = ".";
+                stars[(n - 1) - (i + 1)] = "/";
+                foreach (var item in stars)
+                {
+                    Console.Write(item);  
+                }
+            Console.WriteLine();
+            }
+
+            stars[(n / 2) - 1] = "|";
+            stars[(n / 2)] = "|";
+            if (n >= 12 )
+            {
+                for (int i = 0; i < (n/2)-2 ; i++)
+                {
+                    foreach (var item in stars)
+                    {
+                        Console.Write(item);
+                    }
+                    Console.WriteLine();
+                }
+
+            }
+            else if (n < 12)
+            {
+                for (int i = 0; i < (n / 2) - 1; i++)
+                {
+                    foreach (var item in stars)
+                    {
+                        Console.Write(item);
+                    }
+                    Console.WriteLine();
+                }
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                stars[i] = "-";
+            }
+
+            if (n >= 12)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    foreach (var item in stars)
+                    {
+                        Console.Write(item);
+                    }
+                    Console.WriteLine();
+                }
+            }
+            else if (n < 12)
+            {
+                 foreach (var item in stars)
+                    {
+                        Console.Write(item);
+                    }
+                    Console.WriteLine();
+            }
+
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//Problem 3 – Arrow
+namespace ConsoleApplication44
+{
+    class Program
+    {
+        
+        
+        static void Main()
+        {
+            int n = int.Parse(Console.ReadLine());
+            List<string> arrow = new List<string>();
+            for (int i = 0; i < (n * 2) - 1; i++)
+            {
+                arrow.Add(".");
+            }
+            for (int i = 0; i < n; i++)
+            {
+                arrow[((n -1)/2) + i] = "#";
+            }
+            foreach (var item in arrow)
+	        {
+		        Console.Write(item);
+	        }
+            Console.WriteLine();
+            for (int i = 1; i <= n - 2; i++)
+            {
+                arrow[((n - 1) / 2) + i] = ".";                
+            }
+
+            for (int i = 0; i < n - 2; i++)
+            {
+                foreach (var item in arrow)
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+            }
+            for (int i = 0; i < (n - 1) /2; i++)
+            {
+                arrow[i] = "#";
+                arrow[(n * 2) - (2 + i)] = "#";
+            }         
+            foreach (var item in arrow)
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine();
+            
+            for (int i = 0; i < (n * 2) - 1; i++)
+            {
+                arrow[i] = ".";
+            }
+            for (int i = 0; i < n - 2; i++)
+            {
+                arrow[i] = ".";
+                arrow[i + 1] = "#";
+
+                arrow[(n * 2) - (2 + i)] = ".";
+                arrow[(n * 2) - (3 + i)] = "#";
+                foreach (var item in arrow)
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+            }
+            for (int i = 0; i < (n * 2) - 1; i++)
+            {
+                arrow[i] = ".";
+            }
+            arrow[n - 1] = "#";
+            foreach (var item in arrow)
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//Problem 3 – House
+namespace ConsoleApplication44
+{
+    class Program
+    {
+        
+        
+        static void Main()
+        {
+            int n = int.Parse(Console.ReadLine());
+            List<string> house = new List<string>();
+            for (int i = 0; i < n; i++)
+            {
+                house.Add(".");
+            }
+            house[(n - 1) / 2] = "*";
+            foreach (var item in house)
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine();
+            house[(n - 1) / 2] = ".";
+            for (int i = 0; i < ((n - 1) / 2) - 1; i++)
+            {
+                house[((n - 1) / 2) - (1 + i)] = "*";
+                house[((n - 1) / 2) - i] = ".";
+
+                house[((n - 1) / 2) + (1 + i)] = "*";
+                house[((n - 1) / 2) + i] = ".";
+
+                foreach (var item in house)
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+            }
+            string a = new string('*', n);
+            Console.WriteLine(a);
+            for (int i = 0; i < n; i++)
+            {
+                house[i] = ".";
+            }
+            for (int i = 0; i < ((n - 1) / 2) - 1; i++)
+            {
+                
+                if (n/4 > 1)
+                {
+                    house[(n/4)] = "*";
+                    house[(n - (n / 4)) - 1] = "*";
+                }
+                else
+                {
+                    house[1] = "*";
+                    house[n - 2] = "*";
+                }
+
+                foreach (var item in house)
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+            }
+            for (int i = 0; i < n; i++)
+            {
+                house[i] = "*";
+            }
+            if (n/4 > 1)
+            {
+                for (int i = 0; i < n/4; i++)
+                {
+                    house[i] = ".";
+                    house[(n - 1) - i] = ".";
+                }
+            }    
+            else
+	        {
+                house[0] = ".";
+                house[n - 1] = ".";
+	        }
+            
+            foreach (var item in house)
+	        {
+		        Console.Write(item);
+	        }
+            Console.WriteLine();
+
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+//Problem 3 – Disk
+namespace ConsoleApplication44
+{
+    class Program
+    {
+        
+        
+        static void Main()
+        {
+            int n = int.Parse(Console.ReadLine());
+            int r = int.Parse(Console.ReadLine());
+
+            string[,] disc = new string[n, n];
+            for (int row = 0; row < n; row++)
+            {
+                for (int col = 0; col < n; col++)
+                {
+                    if (Math.Pow(row - ((n - 1) / 2), 2) + Math.Pow(col - ((n - 1) / 2), 2) <= Math.Pow(r, 2)) // Polzva se formulata ot http://www.mathopenref.com/coordbasiccircle.html, kato za da se izchisliava radiusa ot tzentura se ivajda ot x i y mestopolojenieto na tzentura po koordinatnata sistema https://www.youtube.com/watch?v=Ad09WTHIv_A&feature=youtu.be
+                    {
+                        disc[row, col] = "*";
+                    }
+                    else
+                    {
+                        disc[row, col] = ".";
+                    }
+                }
+            }
+            for (int row = 0; row < n; row++)
+            {
+                for (int col = 0; col < n; col++)
+                {
+                    Console.Write(disc[row, col]);
+                }
+                Console.WriteLine();
+            
+            }
+        }
+    }
+}

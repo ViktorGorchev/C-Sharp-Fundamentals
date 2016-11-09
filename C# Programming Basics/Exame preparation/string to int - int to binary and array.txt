@@ -1,0 +1,47 @@
+//spliting sring
+//string to int
+//int to binary string
+//binary string to int array
+//converting binary string to int
+
+
+//string input = "0101";                  // binary string
+//int output = Convert.ToInt32(input, 2); // converting binary string to int
+
+
+//string[] input = Console.ReadLine().Split();          // input strings with space "1 2 55 88 99"
+//int[] lockRows = Array.ConvertAll(input, int.Parse);  // converting to int array (quicker!)
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+//Problem 5 – Bit Sifting
+namespace ConsoleApplication45
+{
+    class Program
+    {
+        static void Main()
+        {
+            string numbers = Console.ReadLine();
+            string[] nums = numbers.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+           
+            int x = 0;
+            Int32.TryParse(nums[0], out x);
+
+            string s = Convert.ToString(x, 2); //Convert to binary in a string
+
+            int[] bits = s.PadLeft(64, '0') // Add 0's from left
+                         .Select(c => int.Parse(c.ToString())) // convert each char to int
+                         .ToArray(); // Convert IEnumerable from select to Array
+            
+            foreach (var item in bits)
+            {
+                Console.WriteLine(item);
+            }
+        }
+    }
+}

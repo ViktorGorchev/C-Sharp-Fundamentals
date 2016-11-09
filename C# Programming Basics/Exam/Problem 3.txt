@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication46
+{
+    class Program
+    {
+        static void Main()
+        {
+            int n = int.Parse(Console.ReadLine());
+            char simbol = char.Parse(Console.ReadLine());
+
+            List<char> table = new List<char>();
+
+            for (int i = 0; i < n; i++)
+            {
+                table.Add('-');
+            }
+            table[n / 2] = simbol;  //start
+
+            foreach (var item in table) 
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine();
+
+            for (int i = 1; i <= (n / 2) - 1; i++) //Gorna chast
+            {
+                table[(n / 2) - i] = simbol;
+                table[(n / 2) + i] = simbol;
+
+                foreach (var item in table)
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+            }
+
+            
+
+            for (int i = 0; i < n; i++)
+            {
+                table[i] = simbol;
+            }
+            foreach (var item in table)
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine();
+
+            for (int i = 1; i <= (n / 2) - 1; i++) //Dolna chast
+            {
+                table[(n - 1) - (n - i)] = '-';
+                table[(n - i)] = '-';
+
+                foreach (var item in table)
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+
+            }
+
+            table[(n / 2) - 1] = '-'; //end
+            table[(n / 2) + 1] = '-';
+            foreach (var item in table)
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine();
+        }
+    }
+}
